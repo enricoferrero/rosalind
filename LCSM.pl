@@ -16,7 +16,4 @@ while (my $seqobj = $seqio->next_seq) {
 my $tree = Tree::Suffix->new(@seqs);
 my @lcss = $tree->lcs;
 
-print Dumper @lcss;
-print Dumper \@lcss;
-
 say $lcss[0];

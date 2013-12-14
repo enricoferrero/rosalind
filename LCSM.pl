@@ -17,7 +17,7 @@ my $maxLength = 0;
 my $lcss = '';
 for my $i (0 .. $#seqs-1) {
 	for my $j ($i+1 .. $#seqs) {
-		my $local = lcss($seqs[$i], $seqs[$j]);
+		my $local = String::LCSS_XS::lcss($seqs[$i], $seqs[$j]);
 		if (length($local) > $maxLength) {
 			$lcss = $local;
 			$maxLength = length($lcss);

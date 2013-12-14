@@ -18,3 +18,5 @@ my @lcss = $tree->lcs;
 
 print Dumper @lcss;
 print Dumper \@lcss;
+
+say $lcss[0];

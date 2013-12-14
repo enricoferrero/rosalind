@@ -1,23 +1,34 @@
 #!/usr/bin/env perl
-use strict;
-use warnings;
+use Modern::Perl;
 
-open my $in, "<", "input.txt";
-my $line = <$in>;
-close $in;
-my @tmp = split /\s+/, $line;
-my $n = $tmp[0];
-my $k = $tmp[1];
+my ($n, $m) = split /\s+/, <>;
 
 sub fib {
-	my $n = shift;
-	my $k = shift;
-	if ($n <= 2) {
-		return 1;
+
+	my ($n, $m) = @_;
+	my @fibTable;
+
+	for my $i (0 .. $n-1) {
+		if ($i < $m) {
+			if ($i < 2) {
+				push @fibTable, 1;
+			}
+			else {
+				push @fibTable, $fibTable[-1] + $fibTable[-2];
+			}
+		}
+		else {
+			my $rabbits = 0;
+			for my $j ($i-$m .. $i-2) {
+				$rabbits = $rabbits + $fibTable[$j];
+			}
+			push @fibTable, $rabbits;
+		}
 	}
-	else {
-		fib($n - 1, $k) + ($k * fib($n - 2, $k));
-	}
+	return @fibTable;
 }
 
-print fib($n, $k), "\n";
+my @result = fib($n, $m);
+say $result[-1];
+
+
